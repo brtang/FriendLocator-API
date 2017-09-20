@@ -9,7 +9,7 @@ const express = require('express'),
       Promise = require('bluebird');    
 
 // Custom imports
-var User = require('./models/mongo.js').User;
+var User = require('./models/users.js').User;
 var config = require('./config/config.js');     
 
 // MongoDB connection
