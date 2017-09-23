@@ -7,10 +7,13 @@ const express = require('express'),
       url = require('url');
       http = require('http');
       Promise = require('bluebird');    
+      //Convert mongoose API to a promise-returning API
+      Promise.promisifyAll(require("mongoose"));
 
 // Custom imports
 var User = require('./models/users.js').User;
-var config = require('./config/config.js');     
+var config = require('./config/config.js');    
+var routes = require('./routes'); 
 
 // MongoDB connection
 mongoose.connect(config.db);
@@ -30,48 +33,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+routes(app);
+
 //API ROUTES 
-
-/*Registration route. Catches a x-www-form-urlencoded name and password key using body-parser.
-Searched MongoDB for a name with the name key and creates a new User model to be saved into MongoDB. 
-*/
-app.post('/registration', function(req, res){
-
-    console.log("Received password: ", req.body.password);
-    console.log("Received username: ", req.body.username);
-    console.log("Received name: ", req.body.firstName + ' ' + req.body.lastName);
-
-    if (!req.body.username || !req.body.password){
-        res.json({"type": 'registration',
-                "success": false,
-                "reason": 'Username or password cannot be null'})
-    }
-   
-    User.findOne({'username': req.body.username}, function(err, obj){
-        if (err) return handleError(err);
-   
-        if(!obj){
-            var newUser = new User({username : req.body.username, 
-                                    password: req.body.password,
-                                    firstName: req.body.firstName, 
-                                    lastName: req.body.lastName});
-            newUser.save(function (err, obj, numAffected){
-                if(err) return handleError(err);
-                var token = jwt.sign(obj, app.get('superSecret'), {
-                    expiresIn: 60*180*999999999 
-                });
-                obj.token = token;
-                res.json({"type": 'registration',
-                  "success": true,
-                  "token" : token});
-            });
-        }else{
-            res.json({"type": 'registration',
-                    "success": false,
-                    "reason": 'User already exists'});
-        }
-    });
-});
 
 
 var apiRoutes = express.Router(); 

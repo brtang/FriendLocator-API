@@ -15,19 +15,29 @@ Responses with status code 200 will have data sent in JSON format
 
 POST /registration
 
-parameter name: firstName,
+parameter: firstName,
 Required: No,
 Description: First name of registering user
 
-parameter name: lastName,
+parameter: lastName,
 Required: No,
 Description: Last name of registering user
 
-parameter name: username,
+parameter: username,
 Required: Yes,
 Description: Requesting username of registering user
 
-parameter name: password,
+parameter: password,
 Required: Yes,
 Description: Password for registering user
+
+POST /login
+
+parameter: username,
+Required: Yes,
+Description: Username of logging in user
+
+parameter: password,
+Required: Yes,
+Description: Password of logging in user associated with username
 
