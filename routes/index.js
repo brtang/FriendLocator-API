@@ -2,8 +2,8 @@ const routes = require('express').Router();
       express = require('express');
       passport = require('passport');
       AuthenticationController = require('../controllers/authentication');
-     // ClientController = require('../controllers/client');
-     // passportService = require('../config/passport')();  
+      FriendController = require('../controllers/friend');
+      passportService = require('../config/passport')();  
       
 module.exports = function(app){
     
@@ -11,5 +11,7 @@ module.exports = function(app){
     app.post('/registration', AuthenticationController.registration);
     
     app.post('/login', AuthenticationController.login);
+    
+    app.post('/addfriend', passportService.authenticateClient(), FriendController.addfriend);
 
 };      

@@ -68,7 +68,7 @@ exports.login = function(req, res, next){
                     "success": false,
                     "reason": 'Incorrect password'});
         }else{
-            var token = jwt.sign(obj, config.secret, {
+            var token = jwt.sign({username: req.body.username}, config.secret, {
                 expiresIn: 60*180*99999999 // expires in 180 mins
             });
             obj.token = token;
