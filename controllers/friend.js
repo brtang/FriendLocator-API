@@ -4,9 +4,9 @@ var config = require('../config/config.js');
 exports.addfriend = function(req, res, next){
     
     console.log("Made it!!!!!!!!!!", req.user);
-    /*
-   var requesting_user = req.body.username;
-   var friend_requested = req.body.friend;
+    
+   var requesting_user = req.user;
+   var friend_requested = req.body.friend_to_request;
   
    console.log("Requesting user: ", requesting_user);  
    console.log("Requesting friend for: ", friend_requested);   
@@ -36,7 +36,7 @@ exports.addfriend = function(req, res, next){
         });      
       }
    });
-   */
+   
 
 
 }
