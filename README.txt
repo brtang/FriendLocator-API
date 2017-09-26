@@ -41,3 +41,12 @@ parameter: password,
 Required: Yes,
 Description: Password of logging in user associated with username
 
+POST /friendrequest
+
+Route to handle friend requests
+
+Security: Json Web Token
+
+parameter: friend_to_request,
+Required: Yes,
+Description: Username of user to send friend request to 

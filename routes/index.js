@@ -12,6 +12,6 @@ module.exports = function(app){
     
     app.post('/login', AuthenticationController.login);
     
-    app.post('/addfriend', passportService.authenticateClient(), FriendController.addfriend);
+    app.post('/friendrequest', passportService.authenticateClient(), FriendController.friendrequest);
 
 };      
