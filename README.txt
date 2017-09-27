@@ -15,38 +15,55 @@ Responses with status code 200 will have data sent in JSON format
 
 POST /registration
 
-parameter: firstName,
+Parameter: firstName,
 Required: No,
 Description: First name of registering user
 
-parameter: lastName,
+Parameter: lastName,
 Required: No,
 Description: Last name of registering user
 
-parameter: username,
+Parameter: username,
 Required: Yes,
 Description: Requesting username of registering user
 
-parameter: password,
+Parameter: password,
 Required: Yes,
 Description: Password for registering user
 
 POST /login
 
-parameter: username,
+Parameter: username,
 Required: Yes,
 Description: Username of logging in user
 
-parameter: password,
+Parameter: password,
 Required: Yes,
 Description: Password of logging in user associated with username
 
-POST /friendrequest
+#Friend routes
+Security: Json Web Token
+
+POST /friend/request
 
 Route to handle friend requests
 
-Security: Json Web Token
-
-parameter: friend_to_request,
+Parameter: friend,
 Required: Yes,
-Description: Username of user to send friend request to 
+Description: Username to send friend request to 
+
+POST /friend/accept
+
+Route to handle friend request accepts
+
+Parameter: friend,
+Required: Yes,
+Description: Username to accept friend request for 
+
+POST /friend/decline
+
+Route to handle friend request declines
+
+Parameter: friend,
+Required: Yes,
+Description: Username to decline friend request to 
