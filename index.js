@@ -35,11 +35,11 @@ app.use(bodyParser.json());
 
 routes(app);
 
-//API ROUTES 
 
+//DEPRECATED
 
 var apiRoutes = express.Router(); 
-
+/*
 //Login route 
 apiRoutes.post('/login', function(req,res){
     console.log("Received username: ", req.body.username);
@@ -218,6 +218,7 @@ apiRoutes.post('/acceptFriend/', function(req, res){
    });
    
 });
+*/
 
 //Reject friend request route
 apiRoutes.post('/rejectFriend/', function(req, res){
@@ -770,7 +771,7 @@ apiRoutes.post('/search', function(req,res){
 });
 
 
-app.use('/api', apiRoutes);
+
 
 
 app.listen(app.get('port'), function(){

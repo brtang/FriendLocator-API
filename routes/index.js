@@ -7,11 +7,21 @@ const routes = require('express').Router();
       
 module.exports = function(app){
     
-    //General Registration route
+    //General Registration & Login routes
     app.post('/registration', AuthenticationController.registration);
     
     app.post('/login', AuthenticationController.login);
     
-    app.post('/friendrequest', passportService.authenticateClient(), FriendController.friendrequest);
+    
+    //Friend request, accept, and decline routes
+    var friendRoutes = express.Router(); 
+    
+    friendRoutes.post('/request', passportService.authenticateClient(), FriendController.request);
+    
+    friendRoutes.post('/accept', passportService.authenticateClient(), FriendController.accept);
+    
+     friendRoutes.post('/decline', passportService.authenticateClient(), FriendController.decline);
+     
+    app.use('/friend', friendRoutes);
 
 };      
